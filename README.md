@@ -1,62 +1,137 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Blog rails
 
-> Description the project.
-
+The Blog rails app will be a classic example of a blog website. This will be a fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Ruby on Rails
 
-## Live Demo (if available)
+## Live Preview
+### [Live Demo]()
 
-[Live Demo Link](https://livedemo.com)
+## Additional Tools
 
+- rubocop
+- stylelint
+- Ruby Gems
 
-## Getting Started
+## Versions
+- Ruby  ~3.1.2
+- PostgreSQL  ~14.0
+- Node.js  ~16.17.0
+- Yarn  ~1.22.19
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+## `Getting Started`
 
+To get a local copy of this project:
 
-To get a local copy up and running follow these simple example steps.
+Clone this repository or download the Zip folder:
+```
+$ git clone git@github.com:AACHOURMOHAMED/blog-rails.git
+```
+Then:
+```
+$ cd blog-rails
 
-### Prerequisites
+$ gem install bundler
 
-### Setup
+$ bundle install
+```
 
-### Install
+To start App:
+```
+$ rails server
+```
 
-### Usage
+To view on browser:
+```
+http://localhost:3000
+```
 
-### Run tests
+## `Database creation`
 
-### Deployment
+Create a Postgres user:
+```
+$ su - postgres
+```
 
+After that access Postgres:
+```
+psql
+```
 
+Then create a user (or a “role”, as Postgres calls it):
+```
+CREATE ROLE blog WITH CREATEDB LOGIN PASSWORD 'blog';
+```
 
-## Authors
+Initialize the database:
+```
+$ bin/rails db:setup
+```
 
-👤 **Author1**
+Migrate the database:
+```
+$ bin/rails db:create
+```
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+## `Tests`
 
-👤 **Author2**
+### Running specs:
+Default: Run all spec files (i.e., those matching spec/**/*_spec.rb):
+```
+$ bundle exec rspec
+```
+Run all spec files in a single directory (recursively):
+```
+$ bundle exec rspec spec/models
+```
+Run a single spec file:
+```
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb
+```
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+Run a single example from a spec file (by line number):
+```
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
+```
+
+See all options for running specs:
+```
+$ bundle exec rspec --help
+```
+
+### rails tests:
+
+```
+$ bin/rails test
+```
+
+### To track linter errors locally follow these steps:
+
+Track Ruby linter errors run:
+```
+$ rubocop
+```
+To auto-correct correctable Rubocop offenses run:
+```
+$ rubocop --auto-correct-all | rubocop -A
+```
+
+## `Authors`
+
+👤 **Aachour Mohamed**
+
+- GitHub: [@AACHOURMOHAMED](https://github.com/AACHOURMOHAMED)
+- LinkedIn: [LinkedIn]()
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/AACHOURMOHAMED/blog-rails/issues).
 
 ## Show your support
 
@@ -64,9 +139,10 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- This project is part module 5 in the Microverse study program.
+- Thanks to the Microverse team for the great curriculum.
+- Thanks to Code Reviewers for the insightful feedback.
+- A great thanks to My coding partners, morning session team, and standup team Partners for their contributions.
 
 ## 📝 License
 
