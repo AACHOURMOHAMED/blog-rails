@@ -64,7 +64,7 @@ psql
 
 Then create a user (or a “role”, as Postgres calls it):
 ```
-CREATE ROLE blog WITH CREATEDB LOGIN PASSWORD 'blog';
+CREATE ROLE rubyonrails WITH CREATEDB LOGIN PASSWORD '1234';
 ```
 
 Initialize the database:
