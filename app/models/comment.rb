@@ -1,9 +1,11 @@
 class Comment < ApplicationRecord
-  belongs_to :posts
-  belongs_to :users
+  belongs_to :users, foreign_key: 'user_id', class_name: 'User'
+  belongs_to :posts, foreign_key: 'post_id', class_name: 'Post'
+  after_save :update_comments_counter
 
-  # A method that updates the comments counter for a post.
-  def update_post_comments_counter
-    post.update(comments_counter: post.comments.count)
+  validates :text, presence: true
+
+  def update_comments_counter
+    posts.update(comments_counter: posts.comments_counter + 1)
   end
 end

@@ -1,57 +1,72 @@
 require 'rails_helper'
 
 describe Post, type: :model do
-  subject { Post.new(title: 'My first post', text: 'This is my first post', CommentsCounter: 3, LikesCounter: 4) }
+  let(:user) do
+    User.new(
+      name: 'John',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      bio: 'I am a photographer',
+      posts_counter: 4
+    )
+  end
 
-  before { subject.save }
-
-  it 'title should be present' do
-    subject.title = nil
-    expect(subject).to_not be_valid
+  let(:post) do
+    Post.new(
+      users: user,
+      title: 'My first post',
+      text: 'This is my first post',
+      comments_counter: 1,
+      likes_counter: 2
+    )
   end
 
   it 'title should be present' do
-    subject.title = 'My first post'
-    expect(subject).to be_valid
+    post.title = nil
+    expect(post).to_not be_valid
   end
 
-  it 'text should be present' do
-    subject.text = nil
-    expect(subject).to_not be_valid
+  it 'title should be present' do
+    post.title = 'My first post'
+    expect(post).to be_valid
   end
 
-  it 'text should be present' do
-    subject.text = 'This is my first post'
-    expect(subject).to be_valid
+  it 'title should not be too long' do
+    post.title = 'a' * 251
+    expect(post).to_not be_valid
   end
 
-  it 'CommentsCounter should be an integer' do
-    subject.CommentsCounter = 'three'
-    expect(subject).to_not be_valid
+  it 'title should not be too long' do
+    post.title = 'a' * 249
+    expect(post).to be_valid
   end
 
-  it 'CommentsCounter should be an integer' do
-    subject.CommentsCounter = 3
-    expect(subject).to be_valid
+  it 'comments_counter should be an integer' do
+    post.comments_counter = 'two'
+    expect(post).to_not be_valid
   end
 
-  it 'CommentsCounter should not be negative' do
-    subject.CommentsCounter = -1
-    expect(subject).to_not be_valid
+  it 'comments_counter should be an integer' do
+    post.comments_counter = 2
+    expect(post).to be_valid
   end
 
-  it 'LikesCounter should be an integer' do
-    subject.LikesCounter = 'four'
-    expect(subject).to_not be_valid
+  it 'comments_counter should not be negative' do
+    post.comments_counter = -1
+    expect(post).to_not be_valid
   end
 
-  it 'LikesCounter should be an integer' do
-    subject.LikesCounter = 4
-    expect(subject).to be_valid
+  it 'likes_counter should be an integer' do
+    post.likes_counter = 'four'
+    expect(post).to_not be_valid
   end
 
-  it 'LikesCounter should not be negative' do
-    subject.LikesCounter = -1
-    expect(subject).to_not be_valid
+  it 'likes_counter should be an integer' do
+    post.likes_counter = 4
+    expect(post).to be_valid
+  end
+
+  it 'likes_counter should not be negative' do
+    post.likes_counter = -1
+    expect(post).to_not be_valid
   end
 end

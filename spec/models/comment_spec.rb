@@ -1,32 +1,60 @@
 require_relative '../rails_helper'
 
 RSpec.describe Comment, type: :model do
-  subject { Comment.new(text: 'This is a comment', LikesCounter: 4) }
-
-  before { subject.save }
-
-  it 'text should be present' do
-    subject.text = nil
-    expect(subject).to_not be_valid
+  let(:user) do
+    User.new(
+      name: 'John',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      bio: 'I am a photographer',
+      posts_counter: 4
+    )
   end
 
-  it 'text should be present' do
-    subject.text = 'This is a comment'
-    expect(subject).to be_valid
+  let(:post) do
+    Post.new(
+      users: user,
+      title: 'My first post',
+      text: 'This is my first post',
+      comments_counter: 1,
+      likes_counter: 2
+    )
   end
 
-  it 'LikesCounter should be an integer' do
-    subject.LikesCounter = 'four'
-    expect(subject).to_not be_valid
+  let(:comment) do
+    Comment.new(
+      users: user,
+      posts: post,
+      text: 'Hey!, it is my first comment'
+    )
   end
 
-  it 'LikesCounter should be an integer' do
-    subject.LikesCounter = 4
-    expect(subject).to be_valid
+  it 'is not valid without a text' do
+    comment.text = 'Hey!, it is my first comment'
+    expect(comment).to be_valid
   end
 
-  it 'LikesCounter should not be negative' do
-    subject.LikesCounter = -1
-    expect(subject).to_not be_valid
+  it 'is not valid without a text' do
+    comment.text = nil
+    expect(comment).to_not be_valid
+  end
+
+  it 'is only valid with a user' do
+    comment.users = user
+    expect(comment).to be_valid
+  end
+
+  it 'is only valid wiht a user' do
+    comment.users = nil
+    expect(comment).to_not be_valid
+  end
+
+  it 'it only valid with a post' do
+    comment.posts = nil
+    expect(comment).to_not be_valid
+  end
+
+  it 'is valid with a post' do
+    comment.posts = post
+    expect(comment).to be_valid
   end
 end

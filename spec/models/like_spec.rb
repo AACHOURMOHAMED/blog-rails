@@ -1,27 +1,49 @@
 require_relative '../rails_helper'
 
 RSpec.describe Like, type: :model do
-  subject { Like.new(user_id: 1, post_id: 1) }
-
-  before { subject.save }
-
-  it 'user_id should be present' do
-    subject.user_id = nil
-    expect(subject).to_not be_valid
+  let(:user) do
+    User.new(
+      name: 'John',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      bio: 'I am a photographer',
+      posts_counter: 4
+    )
   end
 
-  it 'user_id should be present' do
-    subject.user_id = 1
-    expect(subject).to be_valid
+  let(:post) do
+    Post.new(
+      users: user,
+      title: 'My first post',
+      text: 'This is my first post',
+      comments_counter: 1,
+      likes_counter: 2
+    )
   end
 
-  it 'post_id should be present' do
-    subject.post_id = nil
-    expect(subject).to_not be_valid
+  let(:like) do
+    Like.new(
+      users: user,
+      posts: post
+    )
   end
 
-  it 'post_id should be present' do
-    subject.post_id = 1
-    expect(subject).to be_valid
+  it 'is only valid with a user' do
+    like.users = user
+    expect(like).to be_valid
+  end
+
+  it 'is only valid with a user' do
+    like.users = nil
+    expect(like).to_not be_valid
+  end
+
+  it 'is valid with a post' do
+    like.posts = post
+    expect(like).to be_valid
+  end
+
+  it 'is only valid with a post' do
+    like.posts = nil
+    expect(like).to_not be_valid
   end
 end
