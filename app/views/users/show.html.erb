@@ -1,0 +1,18 @@
+<section>
+  <h2><%= @user.name %></h2>
+  <h3><%= @user.bio %></h3>
+  <p><%= @user.posts_counter %> posts</p>
+  <p>Created at <%= @user.created_at %></p>
+  <p>Updated at <%= @user.updated_at %></p>
+  <% @users.posts.each do |post| %>
+  <ul>
+    <li><%= link_to post.title, user_post_path(user, post) %></li>
+    <li><%= post.text %></li>
+    <li><%= post.comments_counter %> comments</li>
+    <li><%= post.likes_counter %> likes</li>
+  </ul>
+  <% end %>
+  <button>
+    <%= link_to "View all posts", user_posts_path(@user) %>
+  </button>
+</section>
