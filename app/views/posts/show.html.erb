@@ -1,21 +1,29 @@
 <section>
   <div class='list_posts'>
-    <h2><%= @post.title %> by <%= @post.users.name %></h2>
+    <h2><%= @post.title %> by <%= @post.user.name %></h2>
     <p><%= @post.text %></p>
     <span class='like_comment'>
-      Comments: <%= @post.comments.count %>, 
-      Likes: <%= @post.likes.count %>
+      Comments: <%= @post.comments_counter %>, 
+      Likes: <%= @post.likes_counter %>
     </span>
   </div>
   <ul class='post_comment'>
     <% if @post.comments.length == 0 %>
       <p>No comment added!</p>
     <% else %>
-      <% @post.comments.each do |comment| %>
+      <% @post.comments.includes(:user).each do |comment| %>
         <li>
-          <%= comment.users.name %>: <%= comment.text %>
+          <%= comment.user.name %>: <%= comment.text %>
         </li>
       <% end %>
     <% end %>
   </ul>
+
+  <div>
+<%= link_to "comment", new_user_post_comment_path(user_id: @post.user_id, post_id: @post.id ), class: "" %>
+<%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
+<%= form.submit "Like"%>
+<% end %>
+</div> 
+
 </section>
