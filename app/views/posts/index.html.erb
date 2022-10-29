@@ -5,26 +5,27 @@
     </div>
     <div class='user_info'>
       <h2><%= @user.name %></h2>
-      <p>Number of posts: <%= @user.posts.count %></p>
+      <p>Number of posts: <%= @user.posts_counter %></p>
     </div>
   </div>
+  <h5><%= link_to 'Add new post', new_user_post_path %></h5>
   <div class='user_posts'>
-    <% @user.posts.each do |post| %>
+    <% @posts.each do |post| %>
       <div class='posts_list'>
-        <h5><%= link_to post.title, user_post_path(@user, post) %></h5>
+        <h5><%= link_to post.title, user_post_path(user_id: post.user_id, id: post.id) %></h5>
         <p><%= post.text %></p>
         <span class='like_comment'>
-          Comments: <%= post.comments.count %>,
-          Likes: <%= post.likes.count %>
+          Comments: <%= post.comments_counter %>,
+          Likes: <%= post.likes_counter %>
         </span>
       </div>
       <ul class='post_comment'>
         <% if post.return_recent_comments.length == 0 %>
           <p>No comment added!</p>
         <% else %>
-          <% post.return_recent_comments.each do |comment| %>
+          <% post.return_recent_comments.includes(:user).each do |comment| %>
             <li>
-              <%= comment.users_name %>: <%= comment.text %>
+              <%= comment.user.name %>: <%= comment.text %>
             </li>
           <% end %>
         <% end %>
