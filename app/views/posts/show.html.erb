@@ -1,4 +1,21 @@
 <section>
-  <h1><%= @post.title %></h1>
-  <p><%= @post.text %></p>
+  <div class='list_posts'>
+    <h2><%= @post.title %> by <%= @post.users.name %></h2>
+    <p><%= @post.text %></p>
+    <span class='like_comment'>
+      Comments: <%= @post.comments.count %>, 
+      Likes: <%= @post.likes.count %>
+    </span>
+  </div>
+  <ul class='post_comment'>
+    <% if @post.comments.length == 0 %>
+      <p>No comment added!</p>
+    <% else %>
+      <% @post.comments.each do |comment| %>
+        <li>
+          <%= comment.users.name %>: <%= comment.text %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 </section>
