@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
 
   let(:post) do
     Post.new(
-      user: user,
+      user:,
       title: 'My first post',
       text: 'This is my first post',
       comments_counter: 1,

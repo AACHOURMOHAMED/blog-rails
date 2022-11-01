@@ -12,7 +12,7 @@ RSpec.describe Comment, type: :model do
 
   let(:post) do
     Post.new(
-      user: user,
+      user:,
       title: 'My first post',
       text: 'This is my first post',
       comments_counter: 1,
@@ -22,8 +22,8 @@ RSpec.describe Comment, type: :model do
 
   let(:comment) do
     Comment.new(
-      user: user,
-      post: post,
+      user:,
+      post:,
       text: 'Hey!, it is my first comment'
     )
   end

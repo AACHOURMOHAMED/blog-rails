@@ -12,7 +12,7 @@ RSpec.describe Like, type: :model do
 
   let(:post) do
     Post.new(
-      user: user,
+      user:,
       title: 'My first post',
       text: 'This is my first post',
       comments_counter: 1,
@@ -22,8 +22,8 @@ RSpec.describe Like, type: :model do
 
   let(:like) do
     Like.new(
-      user: user,
-      post: post
+      user:,
+      post:
     )
   end
 
