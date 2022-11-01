@@ -12,7 +12,7 @@ RSpec.describe 'Posts', type: :request do
 
     @post =
       Post.create(
-        users: @user,
+        user: @user,
         title: 'My first post',
         text: 'This is the first post of my blog',
         comments_counter: 3,

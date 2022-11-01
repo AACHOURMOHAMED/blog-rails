@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Post, type: :model do
+RSpec.describe Post, type: :model do
   let(:user) do
     User.new(
       name: 'John',
@@ -12,7 +12,7 @@ describe Post, type: :model do
 
   let(:post) do
     Post.new(
-      users: user,
+      user: user,
       title: 'My first post',
       text: 'This is my first post',
       comments_counter: 1,
