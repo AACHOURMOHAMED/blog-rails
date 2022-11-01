@@ -23,7 +23,7 @@
         <% if post.return_recent_comments.length == 0 %>
           <p>No comment added!</p>
         <% else %>
-          <% post.return_recent_comments.includes(:user).each do |comment| %>
+          <% post.return_recent_comments.each do |comment| %>
             <li>
               <%= comment.user.name %>: <%= comment.text %>
             </li>
