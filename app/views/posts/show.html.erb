@@ -3,8 +3,8 @@
     <h2><%= @post.title %> by <%= @post.user.name %></h2>
     <p><%= @post.text %></p>
     <span class='like_comment'>
-      Comments: <%= @post.comments_counter %>, 
-      Likes: <%= @post.likes_counter %>
+      Comments: <%= @post.comments_counter || 0 %>, 
+      Likes: <%= @post.likes_counter || 0 %>
     </span>
   </div>
   <ul class='post_comment'>

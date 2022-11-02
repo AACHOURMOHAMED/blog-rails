@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @user = User.includes(:posts).find(params[:user_id])
+    @user = User.includes(posts: [:comments]).find(params[:user_id])
     @posts = @user.posts
   end
 
@@ -22,6 +22,8 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  private
 
   def post_params
     params.require(:post).permit(:title, :text)
