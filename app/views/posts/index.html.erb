@@ -15,7 +15,7 @@
         <h5><%= link_to post.title, user_post_path(user_id: post.user_id, id: post.id) %></h5>
         <p><%= post.text %></p>
         <span class='like_comment'>
-          Comments: <%= post.comments_counter %>,
+          Comments: <%= post.comments_counter %>
           Likes: <%= post.likes_counter %>
         </span>
       </div>
