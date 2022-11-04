@@ -1,4 +1,5 @@
 <section>
+  <img src = "<%= @current_user&.photo || 'photo.png' %>" alt="current user">
   <ul class='list_users'>
     <% @users.each do |user| %>
       <li class='one_user'>
