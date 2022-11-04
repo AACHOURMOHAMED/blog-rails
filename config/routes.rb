@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, sign_out_via: %i[get post]
   devise_scope :user do
     get 'sign_out', to: 'devise/sessions#destroy'
   end

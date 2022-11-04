@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-  has_many :comments
-  has_many :likes
+  has_many :comments, foreign_key: 'post_id', dependent: :destroy
+  has_many :likes, foreign_key: 'post_id', dependent: :destroy
   belongs_to :user, foreign_key: 'user_id', class_name: 'User'
   after_create :update_posts_counter
 
@@ -13,6 +13,6 @@ class Post < ApplicationRecord
   end
 
   def update_posts_counter
-    user.increment!(:posts_counter)
+    user.update(posts_counter: user.posts.count)
   end
 end

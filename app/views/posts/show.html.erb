@@ -3,12 +3,13 @@
     <h2 class='head'><%= @post.title %> by <%= @post.user.name %></h2>
     <p class='text'><%= @post.text %></p>
     <div class='like_comment'>
-    <span>
-      Comments: <%= @post.comments_counter || 0 %> 
-    </span>
-    <span> Likes: <%= @post.likes_counter || 0 %></span>
+      <span>
+        Comments: <%= @post.comments_counter || 0 %> 
+      </span>
+      <span> Likes: <%= @post.likes_counter || 0 %></span>
+    </div>
   </div>
-  </div>
+
   <ul class='post_comment'>
     <h6 class='coms'>COMMENTS</h6>
     <% if @post.comments.length == 0 %>
@@ -17,16 +18,23 @@
       <% @post.comments.includes(:user).each do |comment| %>
         <li>
           <%= comment.user.name %>: <%= comment.text %>
+          <% if can? :destroy, comment %>
+           : <%= link_to 'delete', user_post_comment_path(@post.user_id, @post.id, comment.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          <% end %>
         </li>
       <% end %>
     <% end %>
   </ul>
 
   <div class='comment_box'>
-<%= link_to "Add comment", new_user_post_comment_path(user_id: @post.user_id, post_id: @post.id ), class: "" %>
-<%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
-<%= form.submit "Like"%>
-<% end %>
-</div> 
-
+    <%= link_to "Add comment", new_user_post_comment_path(user_id: @post.user_id, post_id: @post.id ), class: "" %>
+    <%= form_with model: @like, url: user_post_likes_path(post_id: @post.id) do |form| %>
+      <div class='like_submit'>
+        <%= form.submit "Like"%>
+      </div>
+    <% end %>
+    <% if can? :destroy, @post %>
+      <%= link_to 'Delete Post', user_post_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+    <% end %>
+  </div> 
 </section>

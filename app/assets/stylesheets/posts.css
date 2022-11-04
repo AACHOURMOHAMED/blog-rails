@@ -18,7 +18,7 @@
 
 .coms {
   text-decoration: underline;
-  color: rgb(8, 127, 143);
+  color: rgb(8, 143, 8);
 }
 
 .comment_box {
@@ -33,7 +33,7 @@
   font-weight: bold;
   border: none;
   width: 130px;
-  background-color: rgb(8, 127, 143);
+  background-color: rgb(8, 143, 8);
   color: white;
   padding: 5px;
 }
@@ -45,7 +45,7 @@
 }
 
 .head {
-  color: rgb(8, 127, 143);
+  color: rgb(8, 143, 8);
 }
 
 .text {
@@ -61,8 +61,25 @@
 }
 
 .actions > * {
-  background-color: rgb(8, 127, 143);
+  background-color: rgb(8, 143, 8);
   color: white;
   padding: 10px;
   border: none;
+}
+
+.like_submit > * {
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  width: 130px;
+  background-color: rgb(8, 143, 8);
+  color: white;
+  padding: 5px;
+}
+
+.like_submit > *:hover {
+  text-decoration: underline;
+  color: white;
+  font-style: italic;
 }

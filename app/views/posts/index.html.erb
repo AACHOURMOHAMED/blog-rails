@@ -18,6 +18,9 @@
           Comments: <%= post.comments_counter %>
           Likes: <%= post.likes_counter %>
         </span>
+        <% if can? :destroy, post %>
+          <%= link_to 'Delete Post', user_post_path(post.user, post), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
       </div>
       <ul class='post_comment'>
         <% if post.return_recent_comments.length == 0 %>
@@ -26,6 +29,9 @@
           <% post.return_recent_comments.each do |comment| %>
             <li>
               <%= comment.user.name %>: <%= comment.text %>
+              <% if can? :destroy, comment %>
+               : <%= link_to 'delete', user_post_comment_path(post.user_id, post.id, comment.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+              <% end %>
             </li>
           <% end %>
         <% end %>

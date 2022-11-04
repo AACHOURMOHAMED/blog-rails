@@ -1,6 +1,6 @@
 <div class='comment_sect'>
 <h1 class='comment_title'>Add Comment</h1>
-<%= form_with model: @comment, url: user_post_comments_path do |form| %>
+<%= form_with model: @comment, url: user_post_comments_path, scope: :new_comment do |form| %>
   <%= form.label :text %> 
   <div class='text_field'>
   <%= form.text_area :text %>

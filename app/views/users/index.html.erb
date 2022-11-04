@@ -1,6 +1,6 @@
 <section>
+  <img src = "<%= @current_user&.photo || 'photo.png' %>" alt="current user">
   <ul class='list_users'>
-  <h2>hesldkfjljf</h2>
     <% @users.each do |user| %>
       <li class='one_user'>
         <div>
